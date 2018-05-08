@@ -1,0 +1,61 @@
+/*
+========================================================
+GENERAL
+========================================================
+*/
+
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700,900');
+* {
+    box-sizing: border-box;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+body.noscroll {
+    margin: 0;
+    height: 100%;
+    overflow: hidden
+}
+
+main {
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+h1 {
+    margin: 0;
+    font-weight: 400;
+    font-size: 2.1em;
+}
+
+h2 {
+    margin: 0;
+    font-size: 2.6em;
+    color: #ffcc00;
+    background-color: #000;
+    padding: 0 .25em;
+    display: block;
+    width: fit-content;
+}
+
+@media(max-width: 30em) {
+    h2 {
+        font-size: 1.5em;
+    }
+}
+
+button {
+    background: none;
+    border: 0;
+    color: inherit;
+    cursor: pointer;
+    font: inherit;
+    line-height: normal;
+    overflow: visible;
+    padding: 0;
+}
