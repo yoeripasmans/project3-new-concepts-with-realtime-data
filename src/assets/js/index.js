@@ -254,7 +254,9 @@ var slidesLength = slides.length;
 var openSliderButton = document.querySelector('.open-slider');
 var sliderControls = document.querySelector('.slider-controls');
 var prevButton = document.querySelector('.prev-button');
+var prevButtonSpan = document.querySelector('.prev-button span');
 var nextButton = document.querySelector('.next-button');
+var nextButtonSpan = document.querySelector('.next-button span');
 var bubbleSpawner;
 
 //Gesture init
@@ -321,17 +323,18 @@ function animatePrev() {
 }
 
 function sliderNavIcons() {
+
 	if (currentSlideID === 0) {
-		prevButton.textContent = "Terug";
+		prevButtonSpan.textContent = "Terug";
 	} else {
-		prevButton.textContent = "Vorige stap";
+		prevButtonSpan.textContent = "Vorige stap";
 		prevButton.style.display = 'inline';
 	}
 	if (currentSlideID >= (slidesLength - 1)) {
-		nextButton.textContent = "Einde";
+		nextButtonSpan.textContent = "Einde";
 
 	} else {
-		nextButton.textContent = "Volgende stap";
+		nextButtonSpan.textContent = "Volgende stap";
 	}
 
 }
