@@ -13,12 +13,12 @@ body, html {
     margin: 0;
     padding: 0;
     font-family: 'Open Sans', sans-serif;
-	height: 100%;
+    height: 100%;
 }
 
 main {
     width: 100%;
-	height: 100%;
+    height: 100%;
     margin: 0 auto;
     position: relative;
 }
@@ -57,12 +57,11 @@ main header p {
     margin-bottom: 0;
 }
 
-main > section {
+main>section {
     height: 100%;
     position: relative;
     overflow: hidden;
 }
-
 
 .home button {
     display: block;
@@ -76,19 +75,16 @@ main > section {
     font-weight: 600;
 }
 
-.home .svg-container {
-    display: block;
-    position: relative;
-    width: 55%;
-    max-width: 25em;
-    margin: 0 auto;
+.home svg {
+    max-width: 12em;
+    position: absolute;
+    left: 50%;
+    top: 58%;
+    transform: translate(-50%, -50%);
 }
 
-.home .svg-content {
-    display: inline-block;
-    position: absolute;
-    top: 0;
-    left: 0;
+.home footer {
+    height: auto;
 }
 
 footer {
@@ -97,24 +93,68 @@ footer {
     bottom: 0;
 }
 
-.feed-fish {
+.slider {
+    width: 300%;
+    height: 100%;
+    display: flex;
+    transition: transform 0.4s;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    visibility: hidden;
+}
+
+.slider--open {
+    visibility: visible;
+}
+
+.slider-controls {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    height: 4em;
+    padding: 0 1em;
+    color: #fff;
+    display: none;
+}
+
+.slider-controls--active {
+    display: flex;
+}
+
+.slider>section {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.feed-fish, .fish-poop {
     background-color: #4A90E2;
     color: #fff;
 }
 
-.feed-fish header {
+.slider>section header {
     position: absolute;
     z-index: 1;
+    width: 100%;
 }
 
-.feed-fish footer {
+.slider>section footer {
     height: 4em;
+    width: 100%;
     display: flex;
+    padding: 0 1em
 }
 
 .next-button {
     margin-left: auto;
-    margin-right: 2em;
+}
+
+.bubble-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
 }
 
 .bubble {
@@ -122,27 +162,19 @@ footer {
     height: 20px;
     border-radius: 50%;
     background-color: #89B7ED;
-    bottom: -5em;
     position: absolute;
-    right: 2em;
+    animation: spawnBubble 10s forwards;
+    animation-timing-function: ease-out;
 }
 
-.bubble:nth-of-type(1) {
-    left: 4.5em;
-    width: 40px;
-    height: 40px;
-}
-
-.bubble:nth-of-type(2) {
-    left: 9.5em;
-    width: 25px;
-    height: 25px;
-}
-
-.bubble:nth-of-type(3) {
-    left: 8.5em;
-    width: 10px;
-    height: 10px;
+@keyframes spawnBubble {
+    0% {
+        top: 100%;
+    }
+    100% {
+        opacity: 0;
+        top: 0%;
+    }
 }
 
 .feed-fish .svg-container {
@@ -153,18 +185,15 @@ footer {
 }
 
 .fish-container {
-    width: 100vw;
-    height: 24em;
+	width: 100%;
+    height: 22em;
     position: absolute;
-    top: 50%;
-    margin: auto;
-    position: absolute;
-    top: 5em;
+    top: 27%;
     left: 0;
     bottom: 0;
     right: 0;
-	outline: 0;
-	-webkit-tap-highlight-color: transparent;
+    outline: 0;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .fish {
@@ -176,25 +205,24 @@ footer {
 }
 
 .worm {
-	position: absolute;
-	transition: transform 10s;
-	opacity: 0;
+    position: absolute;
+    transition: transform 10s;
+    opacity: 0;
     animation: spawnWorm 10s forwards;
-	animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
 }
 
 @keyframes spawnWorm {
-	0% {
-		opacity: 0;
-		top: 0;
-	}
-	5% {
-		opacity: 1
-	}
-
-	100% {
+    0% {
         opacity: 0;
-		top: 250px;
+        top: 0;
+    }
+    5% {
+        opacity: 1
+    }
+    100% {
+        opacity: 0;
+        top: 250px;
     }
 }
 
@@ -211,11 +239,13 @@ footer {
 }
 
 .fish-direction {
-  position: relative;
-  transition: transform .5s;
+    position: relative;
+    transition: transform .5s;
 }
 
-.fish-flip .fish-direction { transform: scaleX(-1); }
+.fish-flip .fish-direction {
+    transform: scaleX(-1);
+}
 
 @keyframes bob {
     50% {

@@ -19,30 +19,24 @@ homeTl.to(frontLeaves, 1, {
 
 homeTl.play();
 
-var bubbles = document.querySelectorAll('.bubble');
-
-var bubbleTl = new TimelineMax({
-	repeatDelay: 0,
-	repeat: -1,
-});
-
-bubbleTl.to(bubbles, 6, {
-	top: -40,
-	autoAlpha: 0
-});
-
-bubbleTl.play();
-
-
-var fishAmount = 10;
-// globals
-var count;
 var fishContainer = document.querySelector('.fish-container');
+var fishAmount = 10;
 var pondWidth;
 var pondHeight;
 
-fishContainerSize();
-spawnStartingFish();
+
+window.addEventListener('resize', function() {
+	setSliderWidth();
+	fishContainerSize();
+});
+
+window.addEventListener('load', function() {
+	setSliderWidth();
+	fishContainerSize();
+	spawnStartingFish();
+});
+
+fishContainer.addEventListener('click', stirPond);
 
 function fishContainerSize() {
 	pondWidth = fishContainer.offsetWidth;
@@ -55,7 +49,25 @@ function spawnStartingFish() {
 	}
 }
 
-fishContainer.addEventListener('click', stirPond);
+//Bubbles
+function spawnBubbles() {
+	var bubbleContainer = document.querySelector('.bubble-container');
+	var bubble = document.createElement('div');
+	bubble.classList.add('bubble');
+	bubbleContainer.appendChild(bubble);
+	//Bubble position
+	bubble.style.transform = 'translate(' + Math.floor(Math.random() * pondWidth) + 'px, ' + 0 + 'px)';
+	//Bubble size
+	var radius = Math.random() * 2 + 0.5 + 'em';
+	bubble.style.width = radius;
+	bubble.style.height = radius;
+	//Bubble opacity
+	bubble.style.opacity = Math.random() * (1 - 0.5) + 0.5;
+	//Remove bubble
+	setTimeout(function() {
+		bubbleContainer.removeChild(bubble);
+	}, 10000);
+}
 
 function stirPond(event) {
 	var x = event.clientX - this.offsetLeft;
@@ -120,8 +132,12 @@ function spawnWorm(x, y) {
 	path9.setAttribute("d", "M457.875 145.935h-4.121c-4.267 0-7.727-3.459-7.727-7.727 0-4.268 3.459-7.727 7.727-7.727h4.121c4.267 0 7.727 3.459 7.727 7.727.001 4.268-3.46 7.727-7.727 7.727z");
 	path9.setAttribute("fill", "#827f7d");
 	svg.appendChild(path9);
-
+	//Worm position
 	worm.style.transform = 'translate(' + (x - 25) + 'px, ' + y + 'px)';
+	//Remove worm after animation
+	setTimeout(function() {
+		fishContainer.removeChild(worm);
+	}, 10000);
 }
 
 function spawnFish(x, y) {
@@ -188,8 +204,6 @@ function spawnFish(x, y) {
 
 	fishBob.style.animationDelay = getRandom(7) + 's';
 
-	// $fish.find('.fish-body').on('click', pokeFish.bind(this, $fish));
-
 	positionFish(fish, x, y);
 	// let fish go
 	setTimeout(doFishyThings.bind(this, fish), getRandom(10000));
@@ -197,7 +211,6 @@ function spawnFish(x, y) {
 }
 
 function positionFish(fish, x, y) {
-
 	fish.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
 	fish.setAttribute('x', x);
 	fish.setAttribute('y', y);
@@ -225,8 +238,105 @@ function moveFish(fish) {
 	positionFish(fish, x, y);
 }
 
-
-
 function getRandom(upper) {
 	return Math.random() * upper;
+}
+
+//Variables
+var currentSlideID = 0;
+var animatePos = 0;
+var containerWidth;
+var sliderWidth;
+
+var slider = document.querySelector('.slider');
+var slides = document.querySelectorAll('.slide');
+var slidesLength = slides.length;
+var openSliderButton = document.querySelector('.open-slider');
+var sliderControls = document.querySelector('.slider-controls');
+var prevButton = document.querySelector('.prev-button');
+var nextButton = document.querySelector('.next-button');
+var bubbleSpawner;
+
+//Gesture init
+var mc = new Hammer(slider);
+
+//Events
+openSliderButton.addEventListener('click', openSlider);
+nextButton.addEventListener('click', animateNext);
+prevButton.addEventListener('click', animatePrev);
+mc.on('swipeleft', animateNext);
+mc.on('swiperight', animatePrev);
+
+//Functionality
+function openSlider(e) {
+	slider.classList.add("slider--open");
+	sliderControls.classList.add("slider-controls--active");
+	currentSlideID = 0;
+	animatePos = containerWidth * currentSlideID;
+	containerWidth = window.innerWidth;
+	sliderNavIcons();
+	initPos();
+	bubbleSpawner = setInterval(spawnBubbles, Math.random() * 3000 + 1500);
+	e.stopPropagation();
+	e.preventDefault();
+}
+
+function closeSlider() {
+	slider.classList.remove("slider--open");
+	sliderControls.classList.remove("slider-controls--active");
+	sliderNavIcons();
+	initPos();
+	clearInterval(bubbleSpawner);
+}
+
+function setSliderWidth() {
+	containerWidth = window.innerWidth;
+	sliderWidth = slidesLength * containerWidth;
+	animatePos = containerWidth * currentSlideID;
+	slider.style.width = (slidesLength * 100) + '%';
+	slider.style.transform = 'translateX(-' + animatePos + 'px)';
+}
+
+function animateNext() {
+	if (currentSlideID < (slidesLength - 1)) {
+		currentSlideID++;
+		animatePos = containerWidth * currentSlideID;
+		slider.style.transform = 'translateX(-' + animatePos + 'px)';
+		sliderNavIcons();
+	} else {
+		closeSlider();
+	}
+
+}
+
+function animatePrev() {
+	if (currentSlideID > 0) {
+		currentSlideID--;
+		animatePos = containerWidth * currentSlideID;
+		slider.style.transform = 'translateX(-' + animatePos + 'px)';
+		sliderNavIcons();
+	} else {
+		closeSlider();
+	}
+}
+
+function sliderNavIcons() {
+	if (currentSlideID === 0) {
+		prevButton.textContent = "Terug";
+	} else {
+		prevButton.textContent = "Vorige stap";
+		prevButton.style.display = 'inline';
+	}
+	if (currentSlideID >= (slidesLength - 1)) {
+		nextButton.textContent = "Einde";
+
+	} else {
+		nextButton.textContent = "Volgende stap";
+	}
+
+}
+
+function initPos() {
+	animatePos = containerWidth * currentSlideID;
+	slider.style.transform = 'translateX(-' + animatePos + 'px)';
 }
