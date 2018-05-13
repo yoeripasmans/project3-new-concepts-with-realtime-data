@@ -368,7 +368,7 @@ function animatePrev() {
 
 function sliderNavBg(){
 	//Check if animation need to play
-	if(currentSlideID >= 4){
+	if(currentSlideID >= 3){
 		return sliderControls.classList.add('slider-controls--green');
 		// clearInterval(bubbleSpawner);
 	} else {
@@ -382,7 +382,7 @@ function sliderNavIcons() {
 	if (currentSlideID === 0) {
 		prevButtonSpan.textContent = "Terug";
 	} else {
-		prevButtonSpan.textContent = "Vorige stap";
+		prevButtonSpan.textContent = "Terug";
 		prevButton.style.display = 'inline';
 	}
 	if (currentSlideID >= (slidesLength - 1)) {

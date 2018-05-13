@@ -156,13 +156,12 @@ footer {
 .fish-feed, .fish-poop {
     background-color: #4A90E2;
     color: #fff;
-	overflow: visible;
+    overflow: visible;
 }
 
 .plant-nurient, .plant-water {
     background-color: #84DBFF;
     color: #000;
-	overflow: hidden;
 }
 
 .plant-nurient footer, .plant-water footer {
@@ -192,7 +191,7 @@ footer {
 }
 
 .bubble-container {
-    width: 200%;
+    width: 100%;
     height: 100%;
     position: relative;
     z-index: 1;
@@ -220,17 +219,17 @@ footer {
 
 .svg-container {
     height: 100%;
-    width: 100%;
+    width: 200%;
     position: relative;
     top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
 }
-/* .fish-feed .svg-container {
-	width: 200%;
-	overflow: hidden;
-} */
 
 .fish-container {
-    width: 200%;
+    width: 100%;
     height: 50%;
     position: absolute;
     top: 32%;
@@ -345,8 +344,8 @@ footer {
 .grass {
     position: absolute;
     bottom: 1em;
-    left: -10%;
-    width: 120%;
+    left: -5%;
+    width: 60%;
 }
 
 .grass-background {
@@ -356,21 +355,37 @@ footer {
 }
 
 .sun {
-	position: absolute;
+    position: absolute;
     top: 40%;
     left: 5%;
 }
 
 .cloud {
-	width: 7em;
-	position: absolute;
-	top: 42%;
-	animation: cloud-move 24s linear infinite;
-	z-index: 1;
+    width: 7em;
+    position: absolute;
+    top: 42%;
+    animation: cloud-move 24s linear infinite;
+    z-index: 1;
+    left: -7em;
+}
+
+.cloud-2 {
+    width: 4em;
+    top: 47%;
+    animation: cloud-move 67s linear infinite;
 }
 
 @keyframes cloud-move {
     100% {
-        transform: translateX(200vw);
+        transform: translateX(calc(200vw + 7em));
     }
+}
+
+.greenhouse {
+    position: absolute;
+    bottom: 4em;
+    z-index: 3;
+    left: 43%;
+    transform: translate(-50%, 0);
+    width: 18em;
 }

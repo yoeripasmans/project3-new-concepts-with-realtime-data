@@ -9,7 +9,7 @@ De groentekas op Metabolic Lab is een sleutelonderdeel voor het sluiten van de n
 Hoe kunnen klanten van Café de Ceuvel iets leren over de circulaire economie en de manier waarop nutriënten binnen een systeem gebruikt worden om tot een duurzaam eindproduct te komen?
 
 ## User scenario
-Simon en Els houden erg van duurzaam eten, ze besluiten om in de avond te gaan eten bij Café de Ceuvel. Eenmaal aangekomen bestellen ze allebei een drankje met wat eten. Tijdens het wachten zijn ze benieuwd waar al dat duurzame eten vandaan komt. Ze kijken op de menu kaart waar een link opstaat naar een site waarin dit uitgelegd wordt. Ze navigeren naar de site en klikken er door heen. Ze weten nu meer over het quaponics systeem binnen de Ceuvel en hoe het duurzame eten uiteindelijk tot stand komt.
+Simon en Els houden erg van duurzaam eten, ze besluiten om in de avond te gaan eten bij Café de Ceuvel. Eenmaal aangekomen bestellen ze allebei een drankje met wat eten. Tijdens het wachten zijn ze benieuwd waar al dat duurzame eten vandaan komt. Ze kijken op de menu kaart waar een link opstaat naar een site waarin dit uitgelegd wordt. Ze navigeren naar de site en klikken er door heen. Ze weten nu meer over het aquaponics systeem binnen de Ceuvel en hoe het duurzame eten uiteindelijk tot stand komt.
 
 
 ## Uitwerking
