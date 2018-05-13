@@ -349,12 +349,8 @@ function animateNext() {
 	} else {
 		closeSlider();
 	}
-	//Check if animation need to play
-	// if(currentSlideID >= 2){
-	// 	clearInterval(bubbleSpawner);
-	// } else {
-	// 	bubbleSpawner = setInterval(spawnBubbles, Math.random() * 3000 + 1500);
-	// }
+
+	sliderNavBg();
 
 }
 
@@ -366,6 +362,18 @@ function animatePrev() {
 		sliderNavIcons();
 	} else {
 		closeSlider();
+	}
+	sliderNavBg();
+}
+
+function sliderNavBg(){
+	//Check if animation need to play
+	if(currentSlideID >= 4){
+		return sliderControls.classList.add('slider-controls--green');
+		// clearInterval(bubbleSpawner);
+	} else {
+		return sliderControls.classList.remove('slider-controls--green');
+		// bubbleSpawner = setInterval(spawnBubbles, Math.random() * 3000 + 1500);
 	}
 }
 
