@@ -20,7 +20,7 @@ homeTl.to(frontLeaves, 1, {
 homeTl.play();
 
 var fishContainer = document.querySelector('.fish-container');
-var fishAmount = 10;
+var fishAmount = 20;
 var pondWidth;
 var pondHeight;
 
@@ -58,11 +58,11 @@ function spawnBubbles() {
 	//Bubble position
 	bubble.style.transform = 'translate(' + Math.floor(Math.random() * pondWidth) + 'px, ' + 0 + 'px)';
 	//Bubble size
-	var radius = Math.random() * 2 + 0.5 + 'em';
+	var radius = (Math.random() * 2 + 0.5).toFixed(2) + 'em';
 	bubble.style.width = radius;
 	bubble.style.height = radius;
 	//Bubble opacity
-	bubble.style.opacity = Math.random() * (1 - 0.5) + 0.5;
+	bubble.style.opacity = (Math.random() * (1 - 0.5) + 0.5).toFixed(2);
 	//Remove bubble
 	setTimeout(function() {
 		bubbleContainer.removeChild(bubble);
@@ -217,7 +217,11 @@ function positionFish(fish, x, y) {
 }
 
 function doFishyThings(fish) {
-	// blowBubble(fish);
+	fishBubble(fish);
+
+	if(fish.getAttribute('x') > pondWidth/2){
+		fishPoop(fish);
+	}
 	moveFish(fish);
 
 	var timeout = fish.setAttribute('data', 'timeout');
@@ -236,6 +240,38 @@ function moveFish(fish) {
 		fish.classList.remove('fish-flip');
 	}
 	positionFish(fish, x, y);
+}
+
+function fishBubble(fish) {
+  var bubble = document.createElement('div');
+  bubble.classList.add('fish-bubble');
+  fishContainer.appendChild(bubble);
+
+  var x = fish.getAttribute('x');
+  var y = fish.getAttribute('y');
+
+  bubble.style.top = y + 'px';
+  bubble.style.left = x + 'px';
+
+  setTimeout(function() {
+	  fishContainer.removeChild(bubble);
+  }, 4000);
+}
+
+function fishPoop(fish) {
+  var poop = document.createElement('div');
+  poop.classList.add('poop');
+  fishContainer.appendChild(poop);
+
+  var x = fish.getAttribute('x');
+  var y = fish.getAttribute('y');
+
+  poop.style.top = y + 'px';
+  poop.style.left = x + 'px';
+
+  setTimeout(function() {
+	  fishContainer.removeChild(poop);
+  }, 4000);
 }
 
 function getRandom(upper) {
@@ -258,6 +294,7 @@ var prevButtonSpan = document.querySelector('.prev-button span');
 var nextButton = document.querySelector('.next-button');
 var nextButtonSpan = document.querySelector('.next-button span');
 var bubbleSpawner;
+var wormSpawner;
 
 //Gesture init
 var mc = new Hammer(slider);
@@ -278,7 +315,10 @@ function openSlider(e) {
 	containerWidth = window.innerWidth;
 	sliderNavIcons();
 	initPos();
-	bubbleSpawner = setInterval(spawnBubbles, Math.random() * 3000 + 1500);
+	bubbleSpawner = setInterval(spawnBubbles, Math.random() * 4000 + 1500);
+	wormSpawner = setInterval(function() {
+		spawnWorm(Math.floor(Math.random() * (pondWidth /2)), -50);
+	}, Math.random() * 2000 + 1000);
 	e.stopPropagation();
 	e.preventDefault();
 }
@@ -289,6 +329,7 @@ function closeSlider() {
 	sliderNavIcons();
 	initPos();
 	clearInterval(bubbleSpawner);
+	clearInterval(wormSpawner);
 }
 
 function setSliderWidth() {
@@ -308,6 +349,12 @@ function animateNext() {
 	} else {
 		closeSlider();
 	}
+	//Check if animation need to play
+	// if(currentSlideID >= 2){
+	// 	clearInterval(bubbleSpawner);
+	// } else {
+	// 	bubbleSpawner = setInterval(spawnBubbles, Math.random() * 3000 + 1500);
+	// }
 
 }
 
