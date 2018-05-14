@@ -321,6 +321,7 @@ function openSlider(e) {
 	}, Math.random() * 2000 + 1000);
 	e.stopPropagation();
 	e.preventDefault();
+	sliderNavBg();
 }
 
 function closeSlider() {
@@ -368,11 +369,11 @@ function animatePrev() {
 
 function sliderNavBg(){
 	//Check if animation need to play
-	if(currentSlideID >= 3){
-		return sliderControls.classList.add('slider-controls--green');
+	if(currentSlideID >= 4){
+		return sliderControls.classList.add('slider-controls--black');
 		// clearInterval(bubbleSpawner);
 	} else {
-		return sliderControls.classList.remove('slider-controls--green');
+		return sliderControls.classList.remove('slider-controls--black');
 		// bubbleSpawner = setInterval(spawnBubbles, Math.random() * 3000 + 1500);
 	}
 }

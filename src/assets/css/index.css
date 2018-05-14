@@ -121,14 +121,15 @@ footer {
     padding: 0 1em;
     color: #fff;
     display: none;
+	transition: color 0.4s ease;
 }
 
 .slider-controls--active {
     display: flex;
 }
 
-.slider-controls--green {
-    background-color: #338727;
+.slider-controls--black {
+    color: #000;
 }
 
 .next-button {
@@ -226,6 +227,10 @@ footer {
     right: 0;
     bottom: 0;
     overflow: hidden;
+}
+
+.plant-served .svg-container {
+    width: 100%;
 }
 
 .fish-container {
@@ -375,6 +380,10 @@ footer {
     animation: cloud-move 67s linear infinite;
 }
 
+.cloud-3 {
+    animation-delay: 16s;
+}
+
 @keyframes cloud-move {
     100% {
         transform: translateX(calc(200vw + 7em));
@@ -388,4 +397,37 @@ footer {
     left: 43%;
     transform: translate(-50%, 0);
     width: 18em;
+}
+
+.pipe {
+    position: absolute;
+    bottom: 7.8em;
+    width: 25%;
+    height: 2.5em;
+    z-index: 1;
+}
+
+.filter {
+    position: absolute;
+    right: -5em;
+    bottom: 6em;
+    z-index: 99;
+    transform: rotate(-90deg);
+    width: 100px;
+    height: 100px;
+}
+
+.plate {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    top: 58%;
+}
+
+.letuce {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    top: 58%;
+    width: 11em;
 }
