@@ -34,6 +34,8 @@ window.addEventListener('load', function() {
 	setSliderWidth();
 	fishContainerSize();
 	spawnStartingFish();
+	spawnStartNurient();
+	spawnStartWater();
 });
 
 fishContainer.addEventListener('click', stirPond);
@@ -210,6 +212,57 @@ function spawnFish(x, y) {
 	// $count.text($('.fish').length);
 }
 
+var nurientAmount = 10;
+var waterDrips = 30;
+
+function spanwNurient(){
+
+	var pipe = document.querySelector('.nurient-container');
+	var nurient = document.createElement('div');
+	nurient.classList.add('nurient');
+	pipe.appendChild(nurient);
+	nurient.style.animationDelay = getRandom(7) + 's';
+	nurient.style.top = Math.random() + 0.5 + 'em';
+}
+
+function spawnStartNurient() {
+	for (var i = 0; i < nurientAmount; i++) {
+		spanwNurient();
+	}
+}
+
+function spawnWaterDrip(){
+
+	var pipe = document.querySelector('.waterpipe-container');
+	var waterdrip = document.createElement('div');
+
+	var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+	svg.setAttributeNS(null, "viewBox", "0 0 512 512");
+	svg.setAttributeNS(null, "width", Math.random() * 0.6 + 'em');
+	pipe.appendChild(svg);
+
+	var path1 = document.createElementNS("http://www.w3.org/2000/svg", "path");
+	path1.setAttribute("d", "M438.4 329.6C438.4 430.933 356.267 512 256 512S73.6 430.933 73.6 329.6 256 0 256 0s182.4 229.333 182.4 329.6z");
+	path1.setAttribute("fill", "#4A90E2");
+	svg.appendChild(path1);
+
+	var path2 = document.createElementNS("http://www.w3.org/2000/svg", "path");
+	path2.setAttribute("d", "M256 464c-73.6 0-134.4-59.733-134.4-134.4 0-8.533 7.467-16 16-16s16 7.467 16 16c0 56.533 45.867 102.4 102.4 102.4 8.533 0 16 7.467 16 16s-7.467 16-16 16z");
+	path2.setAttribute("fill", "#fff");
+	path2.setAttribute("opacity", 0.2);
+	svg.appendChild(path2);
+
+	svg.style.animationDelay = getRandom(7) + 's';
+	svg.classList.add('waterdrip');
+
+}
+
+function spawnStartWater() {
+	for (var i = 0; i < waterDrips; i++) {
+		spawnWaterDrip();
+	}
+}
+
 function positionFish(fish, x, y) {
 	fish.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
 	fish.setAttribute('x', x);
@@ -269,6 +322,7 @@ function fishPoop(fish) {
   poop.style.top = y + 'px';
   poop.style.left = x + 'px';
 
+
   setTimeout(function() {
 	  fishContainer.removeChild(poop);
   }, 4000);
@@ -321,7 +375,7 @@ function openSlider(e) {
 	}, Math.random() * 2000 + 1000);
 	e.stopPropagation();
 	e.preventDefault();
-	sliderNavBg();
+	// sliderNavBg();
 }
 
 function closeSlider() {
@@ -349,9 +403,12 @@ function animateNext() {
 		sliderNavIcons();
 	} else {
 		closeSlider();
+		setTimeout(function(){ currentSlideID = 0;
+		animatePos = containerWidth * currentSlideID;
+		slider.style.transform = 'translateX(-' + animatePos + 'px)'; }, 500);
 	}
 
-	sliderNavBg();
+	// sliderNavBg();
 
 }
 
@@ -364,7 +421,7 @@ function animatePrev() {
 	} else {
 		closeSlider();
 	}
-	sliderNavBg();
+	// sliderNavBg();
 }
 
 function sliderNavBg(){
@@ -384,7 +441,7 @@ function sliderNavIcons() {
 		prevButtonSpan.textContent = "Terug";
 	} else {
 		prevButtonSpan.textContent = "Terug";
-		prevButton.style.display = 'inline';
+		prevButton.style.display = 'flex';
 	}
 	if (currentSlideID >= (slidesLength - 1)) {
 		nextButtonSpan.textContent = "Einde";

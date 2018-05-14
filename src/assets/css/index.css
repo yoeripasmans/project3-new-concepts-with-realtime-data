@@ -5,6 +5,7 @@ GENERAL
 */
 
 @import url('https://fonts.googleapis.com/css?family=Lato:300,400,700,900');
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700,800');
 * {
     box-sizing: border-box;
 }
@@ -12,7 +13,7 @@ GENERAL
 body, html {
     margin: 0;
     padding: 0;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Raleway','Open Sans', sans-serif;
     height: 100%;
 }
 
@@ -121,7 +122,7 @@ footer {
     padding: 0 1em;
     color: #fff;
     display: none;
-	transition: color 0.4s ease;
+    transition: color 0.4s ease;
 }
 
 .slider-controls--active {
@@ -132,7 +133,7 @@ footer {
     color: #000;
 }
 
-.next-button {
+.next-button, .prev-button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -142,10 +143,19 @@ footer {
     width: 1em;
     height: 1em;
     margin-left: 0.3em;
+	margin-top: 1px;
 }
 
-.prev-button span {
+.prev-button {
     opacity: 0.6;
+}
+
+.prev-button svg {
+	width: 1em;
+height: 1em;
+margin-right: 0.3em;
+margin-top: 0px;
+transform: rotate(180deg);
 }
 
 .slider>section {
@@ -341,7 +351,7 @@ footer {
 
 @keyframes pooping {
     100% {
-        transform: translateY(200px) rotate(-1080deg);
+        transform: translateY(200px) translateX(100vw) rotate(-1080deg);
         opacity: 0;
     }
 }
@@ -399,12 +409,50 @@ footer {
     width: 18em;
 }
 
-.pipe {
+@media(min-width: 600px) {
+    .greenhouse {
+        left: 50%;
+        width: 28em;
+    }
+    .grass {
+        bottom: 0;
+    }
+}
+
+.pipe-nurient {
     position: absolute;
     bottom: 7.8em;
-    width: 25%;
+    width: 50%;
     height: 2.5em;
     z-index: 1;
+    background-color: #757575;
+}
+
+.nurient {
+    position: absolute;
+    width: 10px;
+    height: 6px;
+    background-color: #E9CFB7;
+    border-radius: 50%;
+    animation: nurient-move 2s linear infinite;
+    top: 1em;
+    left: -1em;
+}
+
+@keyframes nurient-move {
+    100% {
+        transform: translateX(100vw);
+    }
+}
+
+.nurient-container {
+	width: 100%;
+display: block;
+position: absolute;
+top: 50%;
+transform: translate(0,-50%);
+height: 75%;
+background-color: #4A90E2;
 }
 
 .filter {
@@ -430,4 +478,59 @@ footer {
     transform: translate(-50%, -50%);
     top: 58%;
     width: 11em;
+}
+
+.fish-bowl {
+    position: absolute;
+    right: 8%;
+    bottom: 4em;
+    width: 11em;
+    height: 7em;
+    background-color: #919090;
+    z-index: 2;
+}
+
+.fish-bowl-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.fish-bowl-container .topbar {
+    position: absolute;
+    top: 0;
+    height: 1.3em;
+    width: 100%;
+    background-color: #757575;
+}
+
+.pipe-water {
+    position: absolute;
+    bottom: 225px;
+    left: 32.5%;
+    width: 22%;
+    height: 6px;
+    /* z-index: 2; */
+    background-color: #757575;
+    z-index: 22;
+}
+
+.waterpipe-container {
+	position: absolute;
+    bottom: 14em;
+    left: 33.5%;
+    width: 22%;
+    height: 0.6em;
+    z-index: 6;
+}
+
+.waterdrip {
+    animation: water-move 1.4s ease-out infinite;
+}
+
+@keyframes water-move {
+    100% {
+        transform: translateY(103px);
+        opacity: 0.4;
+    }
 }
