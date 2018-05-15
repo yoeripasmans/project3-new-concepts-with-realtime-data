@@ -13,7 +13,7 @@ GENERAL
 body, html {
     margin: 0;
     padding: 0;
-    font-family: 'Raleway','Open Sans', sans-serif;
+    font-family: 'Raleway', 'Open Sans', sans-serif;
     height: 100%;
 }
 
@@ -37,6 +37,7 @@ h1 {
 h2 {
     margin: 0;
     font-size: 1.4em;
+    line-height: 1.4;
 }
 
 button {
@@ -60,6 +61,10 @@ main header p {
     margin-bottom: 0;
 }
 
+.slider header p {
+    margin-top: 0.5em;
+}
+
 main>section {
     height: 100%;
     position: relative;
@@ -76,6 +81,20 @@ main>section {
     color: #fff;
     margin: 2em auto 2em auto;
     font-weight: 600;
+}
+
+.tour a {
+    display: flex;
+    max-width: 19em;
+    width: 100%;
+    height: 4em;
+    background-color: #43A838;
+    color: #fff;
+    margin: 2em auto 2em auto;
+    font-weight: 600;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
 }
 
 .home svg {
@@ -133,6 +152,10 @@ footer {
     color: #000;
 }
 
+.slider-controls--black .prev-button svg path {
+    fill: #000;
+}
+
 .next-button, .prev-button {
     display: flex;
     align-items: center;
@@ -143,19 +166,19 @@ footer {
     width: 1em;
     height: 1em;
     margin-left: 0.3em;
-	margin-top: 1px;
+    margin-top: 1px;
 }
 
 .prev-button {
-    opacity: 0.6;
+    /* opacity: 0.6; */
 }
 
 .prev-button svg {
-	width: 1em;
-height: 1em;
-margin-right: 0.3em;
-margin-top: 0px;
-transform: rotate(180deg);
+    width: 1em;
+    height: 1em;
+    margin-right: 0.3em;
+    margin-top: 0px;
+    transform: rotate(180deg);
 }
 
 .slider>section {
@@ -179,7 +202,7 @@ transform: rotate(180deg);
     background-color: #338727;
 }
 
-.plant-served {
+.plant-served, .tour {
     background-color: #fff;
     color: #000;
 }
@@ -188,6 +211,10 @@ transform: rotate(180deg);
     position: absolute;
     z-index: 1;
     width: 100%;
+}
+
+.slider .tour header {
+    position: static;
 }
 
 .slider>section footer {
@@ -406,16 +433,15 @@ transform: rotate(180deg);
     z-index: 3;
     left: 43%;
     transform: translate(-50%, 0);
-    width: 18em;
+    width: 16em;
 }
 
-@media(min-width: 600px) {
-    .greenhouse {
-        left: 50%;
-        width: 28em;
-    }
-    .grass {
-        bottom: 0;
+
+
+@media(min-width: 800px) {
+    section header {
+        max-width: 42em;
+        margin: auto;
     }
 }
 
@@ -446,13 +472,13 @@ transform: rotate(180deg);
 }
 
 .nurient-container {
-	width: 100%;
-display: block;
-position: absolute;
-top: 50%;
-transform: translate(0,-50%);
-height: 75%;
-background-color: #4A90E2;
+    width: 100%;
+    display: block;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    height: 75%;
+    background-color: #4A90E2;
 }
 
 .filter {
@@ -482,7 +508,7 @@ background-color: #4A90E2;
 
 .fish-bowl {
     position: absolute;
-    right: 8%;
+    right: 5%;
     bottom: 4em;
     width: 11em;
     height: 7em;
@@ -504,20 +530,43 @@ background-color: #4A90E2;
     background-color: #757575;
 }
 
+.fish-bowl-fish {
+	position: absolute;
+	    width: 2em;
+	    height: 2em;
+	    right: 6%;
+	    bottom: 9.5em;
+	    transform: rotate(44deg);
+	    z-index: 1;
+		animation: fish-bowl-swim 4.4s linear infinite;
+		display: none;
+}
+
+@keyframes fish-bowl-swim {
+	0% {
+        transform: translateX(0) rotate(44deg);
+    }
+	50% {
+        transform: translateX(-130px) rotate(44deg);
+    }
+    100% {
+        transform: translateX(0) rotate(44deg);
+    }
+}
+
 .pipe-water {
     position: absolute;
-    bottom: 225px;
+    bottom: 206px;
     left: 32.5%;
     width: 22%;
     height: 6px;
-    /* z-index: 2; */
     background-color: #757575;
     z-index: 22;
 }
 
 .waterpipe-container {
-	position: absolute;
-    bottom: 14em;
+    position: absolute;
+    bottom: 13em;
     left: 33.5%;
     width: 22%;
     height: 0.6em;
@@ -530,7 +579,100 @@ background-color: #4A90E2;
 
 @keyframes water-move {
     100% {
-        transform: translateY(103px);
+        transform: translateY(97px);
         opacity: 0.4;
     }
+}
+
+.drain {
+    position: absolute;
+    bottom: 4.5em;
+    left: 50%;
+    width: 30%;
+    height: 2em;
+    background-color: #757575;
+    z-index: 1;
+    padding: 5px 0;
+}
+
+.drain-water {
+    width: 100%;
+    height: 100%;
+    background-color: #4A90E2;
+    display: flex;
+    overflow: hidden;
+}
+
+.stream {
+    opacity: 0.4;
+    height: 100%;
+    width: 70%;
+    left: 5em;
+    background-color: #3367A4;
+    animation: stream 5.4s linear infinite;
+}
+
+@keyframes stream {
+    0% {
+        transform: translateX(-100vw);
+    }
+    100% {
+        transform: translateX(100vw);
+    }
+}
+
+.stream-bubble {
+    transform: translateX(-100vw);
+    margin-top: 3px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #89B7ED;
+    animation: stream 4.4s linear infinite;
+}
+
+.stream-bubble-2 {
+    animation-delay: 2s;
+    margin-top: 6px;
+}
+
+.stream-bubble-3 {
+    animation-delay: 6s;
+    margin-top: 2px;
+}
+
+.stream-bubble-4 {
+    animation-delay: 5s;
+    margin-top: 8px;
+}
+
+@media(min-width: 600px) {
+    .greenhouse {
+        left: 50%;
+        width: 28em;
+    }
+    .grass {
+        bottom: 0;
+        display: none;
+    }
+    .pipe-water {
+        position: absolute;
+        bottom: 318px;
+        left: 43%;
+        width: 14%;
+        height: 6px;
+        background-color: #757575;
+        z-index: 22;
+    }
+    .waterpipe-container {
+        position: absolute;
+        bottom: 20em;
+        left: 47.5%;
+        width: 22%;
+        height: 0.6em;
+        z-index: 6;
+    }
+	.fish-bowl {
+		right: 17%;
+	}
 }

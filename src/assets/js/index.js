@@ -375,7 +375,7 @@ function openSlider(e) {
 	}, Math.random() * 2000 + 1000);
 	e.stopPropagation();
 	e.preventDefault();
-	// sliderNavBg();
+	sliderNavBg();
 }
 
 function closeSlider() {
@@ -408,7 +408,7 @@ function animateNext() {
 		slider.style.transform = 'translateX(-' + animatePos + 'px)'; }, 500);
 	}
 
-	// sliderNavBg();
+	sliderNavBg();
 
 }
 
@@ -421,12 +421,12 @@ function animatePrev() {
 	} else {
 		closeSlider();
 	}
-	// sliderNavBg();
+	sliderNavBg();
 }
 
 function sliderNavBg(){
 	//Check if animation need to play
-	if(currentSlideID >= 4){
+	if(currentSlideID >= 5){
 		return sliderControls.classList.add('slider-controls--black');
 		// clearInterval(bubbleSpawner);
 	} else {
@@ -444,9 +444,10 @@ function sliderNavIcons() {
 		prevButton.style.display = 'flex';
 	}
 	if (currentSlideID >= (slidesLength - 1)) {
-		nextButtonSpan.textContent = "Einde";
+		nextButton.style.display = 'none';
 
 	} else {
+		nextButton.style.display = 'flex';
 		nextButtonSpan.textContent = "Volgende stap";
 	}
 
