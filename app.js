@@ -43,6 +43,10 @@ io.on('connection', function(socket) {
 		socket.broadcast.emit('spawnworm', x, y);
 	});
 
+	socket.on('fishjump', function() {
+		socket.broadcast.emit('fishjump');
+	});
+
 	io.sockets.emit('totalUsers', {
 		count: io.engine.clientsCount
 	});

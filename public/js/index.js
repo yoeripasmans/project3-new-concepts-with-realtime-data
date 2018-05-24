@@ -21,6 +21,8 @@ homeTl.to(frontLeaves, 1, {
 homeTl.play();
 
 var fishContainer = document.querySelector('.fish-container');
+var fishBowl = document.querySelector('.fish-bowl');
+var fishBowlFish = document.querySelector('.fish-bowl-fish');
 var fishAmount = 20;
 var pondWidth;
 var pondHeight;
@@ -40,6 +42,11 @@ window.addEventListener('load', function() {
 });
 
 fishContainer.addEventListener('click', stirPond);
+
+fishBowl.addEventListener('click', function() {
+	fishJump();
+	socket.emit('fishjump');
+});
 
 function fishContainerSize() {
 	pondWidth = fishContainer.offsetWidth;
@@ -78,8 +85,29 @@ function stirPond(event) {
 	spawnWorm(x, y);
 	socket.emit('spawnworm', x, y);
 }
+
+var jumped = false;
+
+function fishJump() {
+	if (jumped === false) {
+		fishBowlFish.classList.add('jump');
+		jumped = true;
+		setTimeout(function() {
+			fishBowlFish.classList.remove('jump');
+			jumped = false;
+		}, 1600);
+	} else {
+		console.log('al gesporngen');
+	}
+
+}
+
 socket.on('spawnworm', function(x, y) {
 	spawnWorm(x, y);
+});
+
+socket.on('fishjump', function(x, y) {
+	fishJump();
 });
 
 function spawnWorm(x, y) {
@@ -433,7 +461,7 @@ function animatePrev() {
 
 function sliderNavBg() {
 	//Check if animation need to play
-	if (currentSlideID >= 5) {
+	if (currentSlideID >= 4) {
 		return sliderControls.classList.add('slider-controls--black');
 		// clearInterval(bubbleSpawner);
 	} else {

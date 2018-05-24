@@ -82,15 +82,18 @@ main>section {
     margin: 2em auto 2em auto;
     font-weight: 600;
 }
+.tour h2 {
+	font-size: 1.7em;
+}
 
 .tour a {
     display: flex;
-    max-width: 19em;
+    max-width: 20em;
     width: 100%;
     height: 4em;
     background-color: #43A838;
     color: #fff;
-    margin: 2em auto 2em auto;
+    margin: 1em auto 2em auto;
     font-weight: 600;
     align-items: center;
     justify-content: center;
@@ -219,7 +222,7 @@ footer {
 
 .slider>section header {
     position: absolute;
-    z-index: 1;
+    z-index: 8;
     width: 100%;
 }
 
@@ -551,7 +554,7 @@ z-index: 1;
 
 }
 .fish-bowl-fish.jump {
-animation: fish-bowl-swim 1.6s cubic-bezier(0.58, 0.24, 0.51, 1);
+animation: fish-bowl-swim 1.4s cubic-bezier(0.58, 0.24, 0.51, 1);
 }
 
 @keyframes fish-bowl-swim {
@@ -671,8 +674,8 @@ animation: fish-bowl-swim 1.6s cubic-bezier(0.58, 0.24, 0.51, 1);
     .pipe-water {
         position: absolute;
         bottom: 318px;
-        left: 43%;
-        width: 14%;
+		left: 45.5%;
+    width: 9%;
         height: 6px;
         background-color: #757575;
         z-index: 22;
@@ -687,5 +690,8 @@ animation: fish-bowl-swim 1.6s cubic-bezier(0.58, 0.24, 0.51, 1);
     }
 	.fish-bowl {
 		right: 17%;
+	}
+	.fish-bowl-fish {
+		right: 18%;
 	}
 }
