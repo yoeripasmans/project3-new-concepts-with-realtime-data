@@ -30,32 +30,8 @@ var stomp = {
 	},
 
 	onData: function(d) {
-		var parsed = JSON.parse(d.body);
-		console.log(parsed);
-		// if (d.body) {
-		// 	stomp.data = {
-		// 		ph: stomp.getStatus('ph', helper.round(parsed.ph, 2)),
-		// 		conductivity: stomp.getStatus(
-		// 			'conductivity',
-		// 			helper.round(parsed.mscm2, 2);
-		// 		),
-		// 		waterTemp: stomp.getStatus(
-		// 			'waterTemp',
-		// 			helper.round(parsed.water_temp, 0);
-		// 		),
-		// 		humidity: stomp.getStatus('humidity', helper.round(parsed.humidity, 0)),
-		// 		roomTemp: stomp.getStatus('roomTemp', helper.round(parsed.room_temp, 0)),
-		// 		time: new Date(
-		// 			parsed.date.substring(6, 10),
-		// 			Number(parsed.date.substring(3, 5)) - 1,
-		// 			parsed.date.substring(0, 2),
-		// 			Number(parsed.time.substring(0, 2)) + 2,
-		// 			parsed.time.substring(3, 5),
-		// 			parsed.time.substring(6, 8);
-		// 		)
-		// 	}
-		// 	io.emit('data', stomp.data);
-		// }
+		var data = JSON.parse(d.body);
+		console.log(data);
 	}
 };
 
