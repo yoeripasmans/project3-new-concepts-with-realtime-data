@@ -1,4 +1,5 @@
 //Homepage
+var socket = io();
 
 var frontLeaves = document.querySelectorAll('.front-leaves');
 var backLeaves = document.querySelectorAll('.back-leaves');
@@ -75,7 +76,11 @@ function stirPond(event) {
 	var x = event.clientX - this.offsetLeft;
 	var y = event.clientY - this.offsetTop;
 	spawnWorm(x, y);
+	socket.emit('spawnworm', x, y);
 }
+socket.on('spawnworm', function(x, y) {
+	spawnWorm(x, y);
+});
 
 function spawnWorm(x, y) {
 	var worm = document.createElement('div');
@@ -215,7 +220,7 @@ function spawnFish(x, y) {
 var nurientAmount = 10;
 var waterDrips = 30;
 
-function spanwNurient(){
+function spanwNurient() {
 
 	var pipe = document.querySelector('.nurient-container');
 	var nurient = document.createElement('div');
@@ -231,7 +236,7 @@ function spawnStartNurient() {
 	}
 }
 
-function spawnWaterDrip(){
+function spawnWaterDrip() {
 
 	var pipe = document.querySelector('.waterpipe-container');
 	var waterdrip = document.createElement('div');
@@ -272,7 +277,7 @@ function positionFish(fish, x, y) {
 function doFishyThings(fish) {
 	fishBubble(fish);
 
-	if(fish.getAttribute('x') > pondWidth/2){
+	if (fish.getAttribute('x') > pondWidth / 2) {
 		fishPoop(fish);
 	}
 	moveFish(fish);
@@ -296,36 +301,36 @@ function moveFish(fish) {
 }
 
 function fishBubble(fish) {
-  var bubble = document.createElement('div');
-  bubble.classList.add('fish-bubble');
-  fishContainer.appendChild(bubble);
+	var bubble = document.createElement('div');
+	bubble.classList.add('fish-bubble');
+	fishContainer.appendChild(bubble);
 
-  var x = fish.getAttribute('x');
-  var y = fish.getAttribute('y');
+	var x = fish.getAttribute('x');
+	var y = fish.getAttribute('y');
 
-  bubble.style.top = y + 'px';
-  bubble.style.left = x + 'px';
+	bubble.style.top = y + 'px';
+	bubble.style.left = x + 'px';
 
-  setTimeout(function() {
-	  fishContainer.removeChild(bubble);
-  }, 4000);
+	setTimeout(function() {
+		fishContainer.removeChild(bubble);
+	}, 4000);
 }
 
 function fishPoop(fish) {
-  var poop = document.createElement('div');
-  poop.classList.add('poop');
-  fishContainer.appendChild(poop);
+	var poop = document.createElement('div');
+	poop.classList.add('poop');
+	fishContainer.appendChild(poop);
 
-  var x = fish.getAttribute('x');
-  var y = fish.getAttribute('y');
+	var x = fish.getAttribute('x');
+	var y = fish.getAttribute('y');
 
-  poop.style.top = y + 'px';
-  poop.style.left = x + 'px';
+	poop.style.top = y + 'px';
+	poop.style.left = x + 'px';
 
 
-  setTimeout(function() {
-	  fishContainer.removeChild(poop);
-  }, 4000);
+	setTimeout(function() {
+		fishContainer.removeChild(poop);
+	}, 4000);
 }
 
 function getRandom(upper) {
@@ -371,7 +376,7 @@ function openSlider(e) {
 	initPos();
 	bubbleSpawner = setInterval(spawnBubbles, Math.random() * 4000 + 1500);
 	wormSpawner = setInterval(function() {
-		spawnWorm(Math.floor(Math.random() * (pondWidth /2)), -50);
+		spawnWorm(Math.floor(Math.random() * (pondWidth / 2)), -50);
 	}, Math.random() * 2000 + 1000);
 	e.stopPropagation();
 	e.preventDefault();
@@ -403,9 +408,11 @@ function animateNext() {
 		sliderNavIcons();
 	} else {
 		closeSlider();
-		setTimeout(function(){ currentSlideID = 0;
-		animatePos = containerWidth * currentSlideID;
-		slider.style.transform = 'translateX(-' + animatePos + 'px)'; }, 500);
+		setTimeout(function() {
+			currentSlideID = 0;
+			animatePos = containerWidth * currentSlideID;
+			slider.style.transform = 'translateX(-' + animatePos + 'px)';
+		}, 500);
 	}
 
 	sliderNavBg();
@@ -424,9 +431,9 @@ function animatePrev() {
 	sliderNavBg();
 }
 
-function sliderNavBg(){
+function sliderNavBg() {
 	//Check if animation need to play
-	if(currentSlideID >= 5){
+	if (currentSlideID >= 5) {
 		return sliderControls.classList.add('slider-controls--black');
 		// clearInterval(bubbleSpawner);
 	} else {
