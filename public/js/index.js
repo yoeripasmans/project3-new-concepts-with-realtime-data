@@ -382,6 +382,7 @@ var nextButton = document.querySelector('.next-button');
 var nextButtonSpan = document.querySelector('.next-button span');
 var bubbleSpawner;
 var wormSpawner;
+var fishJumpSpawner;
 
 //Gesture init
 var mc = new Hammer(slider);
@@ -406,6 +407,7 @@ function openSlider(e) {
 	wormSpawner = setInterval(function() {
 		spawnWorm(Math.floor(Math.random() * (pondWidth / 2)), -50);
 	}, Math.random() * 2000 + 1000);
+	fishJumpSpawner = setInterval(fishJump, 12000);
 	e.stopPropagation();
 	e.preventDefault();
 	sliderNavBg();
@@ -418,6 +420,7 @@ function closeSlider() {
 	initPos();
 	clearInterval(bubbleSpawner);
 	clearInterval(wormSpawner);
+	clearInterval(fishJumpSpawner);
 }
 
 function setSliderWidth() {
