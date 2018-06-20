@@ -2,6 +2,8 @@
 
 Visuele uitleg in de vorm van een geanimeerd systeem over hoe het duurzame eten vanuit de circulatie in de greenhouse tot stand komt met daarbij real time de huidige status van de verschillende resources. Dit wordt dan in verschillende stappen uitgelegd. Zo kunnen de bezoekers die komen eten bij CdC leren over het verhaal achter het eten vanuit de greenhouse.
 
+Link naar demo: https://aquaponics-deceuvel.herokuapp.com/
+
 ## Design challenge
 Hoe kunnen klanten van Café de Ceuvel op een leuke en interessante manier leren over het verhaal van het duurzame eten wat geproduceerd wordt in de Greenhouse?
 
